@@ -1,9 +1,9 @@
 <!--
  * @Author: wangqiaoling
  * @Date: 2023-04-04 17:43:12
- * @LastEditTime: 2023-04-04 18:26:48
+ * @LastEditTime: 2023-04-06 10:31:53
  * @LastEditors: wangqiaoling
- * @Description: 
+ * @Description: 固定列和表头表格
 -->
 <script setup lang="ts">
 import { tableDataMore } from "./data";

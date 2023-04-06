@@ -1,3 +1,10 @@
+/*
+ * @Author: wangqiaoling
+ * @Date: 2023-04-06 10:14:32
+ * @LastEditTime: 2023-04-06 14:07:30
+ * @LastEditors: wangqiaoling
+ * @Description:
+ */
 import dayjs from "dayjs";
 import { clone } from "@pureadmin/utils";
 
@@ -56,4 +63,10 @@ const tableDataMore = cloneData.map(item =>
   })
 );
 
-export { tableData, tableDataMore };
+const tableDataSortable = cloneData.map((item, index) =>
+  Object.assign(item, {
+    date: `${dayjs(new Date()).format("YYYY-MM")}-${index + 1}`
+  })
+);
+
+export { tableData, tableDataMore, tableDataSortable };
