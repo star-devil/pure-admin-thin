@@ -1,7 +1,7 @@
 /*
  * @Author: wangqiaoling
  * @Date: 2023-04-04 13:43:05
- * @LastEditTime: 2023-04-06 14:27:57
+ * @LastEditTime: 2023-06-26 17:15:01
  * @LastEditors: wangqiaoling
  * @Description: 渲染表格的数据list
  */
@@ -17,6 +17,8 @@ import RadioTable from "./RadioTable.vue";
 import MultipleChoice from "./MultipleChoice.vue";
 import Sortable from "./Sortable.vue";
 import Filter from "./Filter.vue";
+import ColumnTemplate from "./column-template/Index.vue";
+import HeaderRender from "./header-render/Index.vue";
 
 const rendContent = (val: string) =>
   `代码位置：src/views/table/base/${val}.vue`;
@@ -99,5 +101,17 @@ export const list = [
     content: rendContent("Filter"),
     title: "筛选",
     component: Filter
+  },
+  {
+    key: "column-template",
+    content: rendContent("column-template/Index"),
+    title: "自定义列模板",
+    component: ColumnTemplate
+  },
+  {
+    key: "header-render",
+    content: rendContent("header-render/Index"),
+    title: "自定义表头",
+    component: HeaderRender
   }
 ];
