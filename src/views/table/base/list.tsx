@@ -1,7 +1,7 @@
 /*
  * @Author: wangqiaoling
  * @Date: 2023-04-04 13:43:05
- * @LastEditTime: 2023-06-26 17:15:01
+ * @LastEditTime: 2023-06-28 14:21:23
  * @LastEditors: wangqiaoling
  * @Description: 渲染表格的数据list
  */
@@ -19,6 +19,7 @@ import Sortable from "./Sortable.vue";
 import Filter from "./Filter.vue";
 import ColumnTemplate from "./column-template/Index.vue";
 import HeaderRender from "./header-render/Index.vue";
+import Expand from "./Expand.vue";
 
 const rendContent = (val: string) =>
   `代码位置：src/views/table/base/${val}.vue`;
@@ -113,5 +114,11 @@ export const list = [
     content: rendContent("header-render/Index"),
     title: "自定义表头",
     component: HeaderRender
+  },
+  {
+    key: "expand",
+    content: rendContent("expand"),
+    title: "展开行",
+    component: Expand
   }
 ];
