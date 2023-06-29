@@ -1,7 +1,7 @@
 /*
  * @Author: wangqiaoling
  * @Date: 2023-04-04 13:43:05
- * @LastEditTime: 2023-06-28 14:21:23
+ * @LastEditTime: 2023-06-28 14:57:25
  * @LastEditors: wangqiaoling
  * @Description: 渲染表格的数据list
  */
@@ -20,6 +20,7 @@ import Filter from "./Filter.vue";
 import ColumnTemplate from "./column-template/Index.vue";
 import HeaderRender from "./header-render/Index.vue";
 import Expand from "./Expand.vue";
+import Tree from "./Tree.vue";
 
 const rendContent = (val: string) =>
   `代码位置：src/views/table/base/${val}.vue`;
@@ -120,5 +121,11 @@ export const list = [
     content: rendContent("expand"),
     title: "展开行",
     component: Expand
+  },
+  {
+    key: "tree",
+    content: rendContent("tree"),
+    title: "树形结构与懒加载",
+    component: Tree
   }
 ];
