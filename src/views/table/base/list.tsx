@@ -1,7 +1,7 @@
 /*
  * @Author: wangqiaoling
  * @Date: 2023-04-04 13:43:05
- * @LastEditTime: 2023-06-28 14:57:25
+ * @LastEditTime: 2023-06-29 13:38:42
  * @LastEditors: wangqiaoling
  * @Description: 渲染表格的数据list
  */
@@ -21,6 +21,7 @@ import ColumnTemplate from "./column-template/Index.vue";
 import HeaderRender from "./header-render/Index.vue";
 import Expand from "./Expand.vue";
 import Tree from "./Tree.vue";
+import TableRow from "./TotalRow.vue";
 
 const rendContent = (val: string) =>
   `代码位置：src/views/table/base/${val}.vue`;
@@ -127,5 +128,11 @@ export const list = [
     content: rendContent("tree"),
     title: "树形结构与懒加载",
     component: Tree
+  },
+  {
+    key: "tableRow",
+    content: rendContent("tableRow"),
+    title: "表尾合计行",
+    component: TableRow
   }
 ];
