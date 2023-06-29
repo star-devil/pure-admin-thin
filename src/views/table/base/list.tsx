@@ -1,7 +1,7 @@
 /*
  * @Author: wangqiaoling
  * @Date: 2023-04-04 13:43:05
- * @LastEditTime: 2023-06-29 13:38:42
+ * @LastEditTime: 2023-06-29 16:41:46
  * @LastEditors: wangqiaoling
  * @Description: 渲染表格的数据list
  */
@@ -22,6 +22,7 @@ import HeaderRender from "./header-render/Index.vue";
 import Expand from "./Expand.vue";
 import Tree from "./Tree.vue";
 import TableRow from "./TotalRow.vue";
+import Merge from "./Merge.vue";
 
 const rendContent = (val: string) =>
   `代码位置：src/views/table/base/${val}.vue`;
@@ -134,5 +135,11 @@ export const list = [
     content: rendContent("tableRow"),
     title: "表尾合计行",
     component: TableRow
+  },
+  {
+    key: "merge",
+    content: rendContent("merge"),
+    title: "合并行或列",
+    component: Merge
   }
 ];
