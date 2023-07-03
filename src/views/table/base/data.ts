@@ -1,7 +1,7 @@
 /*
  * @Author: wangqiaoling
  * @Date: 2023-04-06 10:14:32
- * @LastEditTime: 2023-06-28 09:58:05
+ * @LastEditTime: 2023-07-03 16:18:04
  * @LastEditors: wangqiaoling
  * @Description:
  */
@@ -293,4 +293,20 @@ const expandTableData = [
   }
 ];
 
-export { tableData, tableDataMore, tableDataSortable, expandTableData };
+// 图片表格数据
+const tableDataImage = cloneData.map((item, index) =>
+  Object.assign(item, {
+    image: `https://pure-admin.github.io/pure-admin-table/imgs/${
+      index + 1
+    }.jpg`,
+    video: "https://yiming_chang.gitee.io/pure-admin-doc/video/url.mov"
+  })
+);
+
+export {
+  tableData,
+  tableDataMore,
+  tableDataSortable,
+  expandTableData,
+  tableDataImage
+};
