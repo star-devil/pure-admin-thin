@@ -1,7 +1,7 @@
 /*
  * @Author: wangqiaoling
  * @Date: 2023-04-04 13:43:05
- * @LastEditTime: 2023-06-29 16:41:46
+ * @LastEditTime: 2023-07-03 13:46:07
  * @LastEditors: wangqiaoling
  * @Description: 渲染表格的数据list
  */
@@ -23,6 +23,7 @@ import Expand from "./Expand.vue";
 import Tree from "./Tree.vue";
 import TableRow from "./TotalRow.vue";
 import Merge from "./Merge.vue";
+import CustomIndex from "./CustomIndex.vue";
 
 const rendContent = (val: string) =>
   `代码位置：src/views/table/base/${val}.vue`;
@@ -120,26 +121,32 @@ export const list = [
   },
   {
     key: "expand",
-    content: rendContent("expand"),
+    content: rendContent("Expand"),
     title: "展开行",
     component: Expand
   },
   {
     key: "tree",
-    content: rendContent("tree"),
+    content: rendContent("Tree"),
     title: "树形结构与懒加载",
     component: Tree
   },
   {
     key: "tableRow",
-    content: rendContent("tableRow"),
+    content: rendContent("TableRow"),
     title: "表尾合计行",
     component: TableRow
   },
   {
     key: "merge",
-    content: rendContent("merge"),
+    content: rendContent("Merge"),
     title: "合并行或列",
     component: Merge
+  },
+  {
+    key: "customIndex",
+    content: rendContent("CustomIndex"),
+    title: "自定义索引",
+    component: CustomIndex
   }
 ];
