@@ -1,7 +1,7 @@
 /*
  * @Author: wangqiaoling
  * @Date: 2023-04-04 13:43:05
- * @LastEditTime: 2023-07-03 13:46:07
+ * @LastEditTime: 2023-07-03 14:49:09
  * @LastEditors: wangqiaoling
  * @Description: 渲染表格的数据list
  */
@@ -24,6 +24,7 @@ import Tree from "./Tree.vue";
 import TableRow from "./TotalRow.vue";
 import Merge from "./Merge.vue";
 import CustomIndex from "./CustomIndex.vue";
+import Layout from "./Layout.vue";
 
 const rendContent = (val: string) =>
   `代码位置：src/views/table/base/${val}.vue`;
@@ -148,5 +149,11 @@ export const list = [
     content: rendContent("CustomIndex"),
     title: "自定义索引",
     component: CustomIndex
+  },
+  {
+    key: "layout",
+    content: rendContent("Layout"),
+    title: "表格布局",
+    component: Layout
   }
 ];
