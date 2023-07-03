@@ -1,7 +1,7 @@
 <!--
  * @Author: wangqiaoling
  * @Date: 2023-07-03 14:08:08
- * @LastEditTime: 2023-07-03 14:59:18
+ * @LastEditTime: 2023-07-03 15:23:36
  * @LastEditors: wangqiaoling
  * @Description: 表格布局
 -->
@@ -34,7 +34,7 @@ const columns: TableColumnList = [
     <el-link
       href="https://developer.mozilla.org/en-US/docs/Web/CSS/table-layout"
       target="_blank"
-      style="margin: 0 4px; font-size: 14px"
+      style="padding-top: 7px; margin: 0 4px; font-size: 14px"
     >
       #table-layout
     </el-link>
