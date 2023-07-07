@@ -32,7 +32,8 @@ menus:
   permission: 权限管理
   permissionPage: 页面权限
   permissionButton: 按钮权限
-  hsBasePureTable: 基础用法（23个示例）
+  hsPureTableBase: 基础用法（23个示例）
+  hsPureTableHigh: 高级用法（11个示例）
 status:
   hsLoad: 加载中...
 login:
