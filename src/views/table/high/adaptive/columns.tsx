@@ -1,7 +1,7 @@
 /*
  * @Author: wangqiaoling
  * @Date: 2023-07-03 17:17:09
- * @LastEditTime: 2023-07-07 11:05:47
+ * @LastEditTime: 2023-07-17 17:29:30
  * @LastEditors: wangqiaoling
  * @Description: 自适应内容区高度
  */
@@ -64,7 +64,7 @@ export function useColumns() {
         dataList.value.push({ id: index, ...item });
       });
       pagination.total = dataList.value.length;
-      // loading.value = false;
+      loading.value = false;
     });
   });
 
@@ -101,6 +101,8 @@ export function useColumns() {
     dataList,
     pagination,
     adaptiveConfig,
+    loading,
+    loadingConfig,
     onCurrentChange,
     onSizeChange
   };
