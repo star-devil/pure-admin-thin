@@ -1,11 +1,12 @@
 /*
  * @Author: wangqiaoling
  * @Date: 2023-07-03 17:24:58
- * @LastEditTime: 2023-07-03 17:27:37
+ * @LastEditTime: 2023-08-14 10:33:32
  * @LastEditors: wangqiaoling
  * @Description: 高级表格数据
  */
 import dayjs from "dayjs";
+import { clone } from "@pureadmin/utils";
 const date = dayjs(new Date()).format("YYYY-MM-DD");
 
 const tableData = [
@@ -51,4 +52,15 @@ const tableData = [
   }
 ];
 
-export { tableData };
+const tableDataEdit = clone(tableData, true).map((item, index) => {
+  delete item["date"];
+  return Object.assign(
+    {
+      id: index + 1,
+      date: `${dayjs(new Date()).format("YYYY-MM")}-${index + 1}`
+    },
+    item
+  );
+});
+
+export { tableData, tableDataEdit };
