@@ -1,7 +1,7 @@
 /*
  * @Author: wangqiaoling
  * @Date: 2023-07-03 17:24:58
- * @LastEditTime: 2023-08-14 10:33:32
+ * @LastEditTime: 2023-08-14 15:39:59
  * @LastEditors: wangqiaoling
  * @Description: 高级表格数据
  */
@@ -63,4 +63,16 @@ const tableDataEdit = clone(tableData, true).map((item, index) => {
   );
 });
 
-export { tableData, tableDataEdit };
+const tableDataDrag = clone(tableData, true).map((item, index) => {
+  delete item["address"];
+  delete item["date"];
+  return Object.assign(
+    {
+      id: index + 1,
+      date: `${dayjs(new Date()).format("YYYY-MM")}-${index + 1}`
+    },
+    item
+  );
+});
+
+export { tableData, tableDataEdit, tableDataDrag };
