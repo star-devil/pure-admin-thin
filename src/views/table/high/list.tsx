@@ -1,7 +1,7 @@
 /*
  * @Author: wangqiaoling
  * @Date: 2023-07-03 16:43:39
- * @LastEditTime: 2023-10-10 14:45:21
+ * @LastEditTime: 2023-10-10 17:05:13
  * @LastEditors: wangqiaoling
  * @Description: 高级表格渲染列表
  */
@@ -12,6 +12,8 @@ import RowDrag from "./drag/row/Index.vue";
 import ColumnDrag from "./drag/column/Index.vue";
 import Contextmenu from "./contextmenu/index.vue";
 import Edit from "./edit/index.vue";
+import Excel from "./excel/index.vue";
+import Print from "./prints/index.vue";
 
 const rendContent = (val: string) =>
   `代码位置：src/views/pure-table/high/${val}/index.vue`;
@@ -58,5 +60,17 @@ export const list = [
     content: rendContent("edit"),
     title: "单元格编辑",
     component: Edit
+  },
+  {
+    key: "excel",
+    content: rendContent("excel"),
+    title: "导出excel",
+    component: Excel
+  },
+  {
+    key: "print",
+    content: rendContent("print"),
+    title: "打印",
+    component: Print
   }
 ];
