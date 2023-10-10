@@ -1,7 +1,7 @@
 /*
  * @Author: wangqiaoling
  * @Date: 2023-07-03 16:43:39
- * @LastEditTime: 2023-10-10 17:05:13
+ * @LastEditTime: 2023-10-10 17:27:22
  * @LastEditors: wangqiaoling
  * @Description: 高级表格渲染列表
  */
@@ -14,6 +14,7 @@ import Contextmenu from "./contextmenu/index.vue";
 import Edit from "./edit/index.vue";
 import Excel from "./excel/index.vue";
 import Print from "./prints/index.vue";
+import Watermark from "./watermark/index.vue";
 
 const rendContent = (val: string) =>
   `代码位置：src/views/pure-table/high/${val}/index.vue`;
@@ -72,5 +73,11 @@ export const list = [
     content: rendContent("print"),
     title: "打印",
     component: Print
+  },
+  {
+    key: "watermark",
+    content: rendContent("watermark"),
+    title: "水印（无法删除的水印哦🤓️）",
+    component: Watermark
   }
 ];
