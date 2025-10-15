@@ -1,10 +1,12 @@
-import { store } from "@/store";
 import { defineStore } from "pinia";
-import { storageLocal } from "@pureadmin/utils";
-import { getConfig, responsiveStorageNameSpace } from "@/config";
+import {
+  store,
+  getConfig,
+  storageLocal,
+  responsiveStorageNameSpace
+} from "../utils";
 
-export const useEpThemeStore = defineStore({
-  id: "pure-epTheme",
+export const useEpThemeStore = defineStore("pure-epTheme", {
   state: () => ({
     epThemeColor:
       storageLocal().getItem<StorageConfigs>(
@@ -23,8 +25,6 @@ export const useEpThemeStore = defineStore({
     fill(state) {
       if (state.epTheme === "light") {
         return "#409eff";
-      } else if (state.epTheme === "yellow") {
-        return "#d25f00";
       } else {
         return "#fff";
       }

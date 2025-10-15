@@ -1,15 +1,18 @@
 // import "@/utils/sso";
+import Cookies from "js-cookie";
 import { getConfig } from "@/config";
 import NProgress from "@/utils/progress";
-import { sessionKey, type DataInfo } from "@/utils/auth";
+import { buildHierarchyTree } from "@/utils/tree";
+import remainingRouter from "./modules/remaining";
 import { useMultiTagsStoreHook } from "@/store/modules/multiTags";
 import { usePermissionStoreHook } from "@/store/modules/permission";
 import {
-  Router,
-  createRouter,
-  RouteRecordRaw,
-  RouteComponent
-} from "vue-router";
+  isUrl,
+  openLink,
+  cloneDeep,
+  isAllEmpty,
+  storageLocal
+} from "@pureadmin/utils";
 import {
   ascending,
   getTopMenu,
@@ -21,10 +24,18 @@ import {
   formatTwoStageRoutes,
   formatFlatteningRoutes
 } from "./utils";
-import { buildHierarchyTree } from "@/utils/tree";
-import { isUrl, openLink, storageSession, isAllEmpty } from "@pureadmin/utils";
-
-import remainingRouter from "./modules/remaining";
+import {
+  type Router,
+  type RouteRecordRaw,
+  type RouteComponent,
+  createRouter
+} from "vue-router";
+import {
+  type DataInfo,
+  userKey,
+  removeToken,
+  multipleTabsKey
+} from "@/utils/auth";
 
 /** 自动导入全部静态路由，无需再手动引入！匹配 src/router/modules 目录（任何嵌套级别）中具有 .ts 扩展名的所有文件，除了 remaining.ts 文件
  * 如何匹配所有文件请看：https://github.com/mrmlnc/fast-glob#basic-syntax
@@ -48,6 +59,9 @@ Object.keys(modules).forEach(key => {
 export const constantRoutes: Array<RouteRecordRaw> = formatTwoStageRoutes(
   formatFlatteningRoutes(buildHierarchyTree(ascending(routes.flat(Infinity))))
 );
+
+/** 初始的静态路由，用于退出登录时重置路由 */
+const initConstantRoutes: Array<RouteRecordRaw> = cloneDeep(constantRoutes);
 
 /** 用于渲染菜单，保持原始层级 */
 export const constantMenus: Array<RouteComponent> = ascending(
@@ -81,17 +95,13 @@ export const router: Router = createRouter({
 
 /** 重置路由 */
 export function resetRouter() {
-  router.getRoutes().forEach(route => {
-    const { name, meta } = route;
-    if (name && router.hasRoute(name) && meta?.backstage) {
-      router.removeRoute(name);
-      router.options.routes = formatTwoStageRoutes(
-        formatFlatteningRoutes(
-          buildHierarchyTree(ascending(routes.flat(Infinity)))
-        )
-      );
-    }
-  });
+  router.clearRoutes();
+  for (const route of initConstantRoutes.concat(...(remainingRouter as any))) {
+    router.addRoute(route);
+  }
+  router.options.routes = formatTwoStageRoutes(
+    formatFlatteningRoutes(buildHierarchyTree(ascending(routes.flat(Infinity))))
+  );
   usePermissionStoreHook().clearAllCachePage();
 }
 
@@ -108,7 +118,7 @@ router.beforeEach((to: ToRouteType, _from, next) => {
       handleAliveRoute(to);
     }
   }
-  const userInfo = storageSession().getItem<DataInfo<number>>(sessionKey);
+  const userInfo = storageLocal().getItem<DataInfo<number>>(userKey);
   NProgress.start();
   const externalLink = isUrl(to?.name as string);
   if (!externalLink) {
@@ -123,7 +133,7 @@ router.beforeEach((to: ToRouteType, _from, next) => {
   function toCorrectRoute() {
     whiteList.includes(to.fullPath) ? next(_from.fullPath) : next();
   }
-  if (userInfo) {
+  if (Cookies.get(multipleTabsKey) && userInfo) {
     // 无权限跳转403页面
     if (to.meta?.roles && !isOneOfArray(to.meta?.roles, userInfo?.roles)) {
       next({ path: "/error/403" });
@@ -185,6 +195,7 @@ router.beforeEach((to: ToRouteType, _from, next) => {
       if (whiteList.indexOf(to.path) !== -1) {
         next();
       } else {
+        removeToken();
         next({ path: "/login" });
       }
     } else {

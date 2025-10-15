@@ -9,6 +9,7 @@ const Print = function (dom, options?: object): PrintFunction {
   options = options || {};
   // @ts-expect-error
   if (!(this instanceof Print)) return new Print(dom, options);
+  // @ts-expect-error
   this.conf = {
     styleStr: "",
     // Elements that need to dynamically get and set the height
@@ -18,20 +19,26 @@ const Print = function (dom, options?: object): PrintFunction {
     // Callback after printing
     printDoneCallBack: null
   };
+  // @ts-expect-error
   for (const key in this.conf) {
-    // eslint-disable-next-line no-prototype-builtins
     if (key && options.hasOwnProperty(key)) {
+      // @ts-expect-error
       this.conf[key] = options[key];
     }
   }
   if (typeof dom === "string") {
+    // @ts-expect-error
     this.dom = document.querySelector(dom);
   } else {
+    // @ts-expect-error
     this.dom = this.isDOM(dom) ? dom : dom.$el;
   }
+  // @ts-expect-error
   if (this.conf.setDomHeightArr && this.conf.setDomHeightArr.length) {
+    // @ts-expect-error
     this.setDomHeight(this.conf.setDomHeightArr);
   }
+  // @ts-expect-error
   this.init();
 };
 
@@ -132,8 +139,10 @@ Print.prototype = {
       "style",
       "position:absolute;width:0;height:0;top:-10px;left:-10px;"
     );
+
     // eslint-disable-next-line prefer-const
     w = f.contentWindow || f.contentDocument;
+
     // eslint-disable-next-line prefer-const
     doc = f.contentDocument || f.contentWindow.document;
     doc.open();
@@ -173,7 +182,7 @@ Print.prototype = {
           if (!frameWindow.document.execCommand("print", false, null)) {
             frameWindow.print();
           }
-        } catch (e) {
+        } catch {
           frameWindow.print();
         }
         frameWindow.close();
